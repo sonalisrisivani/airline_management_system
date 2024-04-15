@@ -1,0 +1,243 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+<style>
+
+body
+{
+ background-color :#a2b7ca;
+ margin: 0px;
+ padding: 0px;
+ background-image: url('../static/images/air6.jpg');
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+a
+{
+ color: white;
+}
+
+.gap
+{
+ margin-top: 200px;
+}
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ background-color:#004098;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgb(26, 9, 108);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+
+.right
+{
+ text-align: right;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.box1
+{
+ height: 200px;
+ width: 150px;
+ display: inline-block;
+ border: 1px solid black;
+ border-radius: 4px;
+ text-align: center;
+ padding-top:10px;
+ margin-right: 2px;
+ margin-bottom: 30px;
+}
+
+.person
+{
+ height: 90px;
+ width:90px;
+ border-radius: 200px;
+ margin-top: 20px;
+ margin-bottom: 40px;
+ margin-left:30px;
+ border: 1px solid black;
+ 
+}
+.footer
+{
+ text-align: center;
+ font-size: 20px;
+ font-weight: bolder;
+ color: white;
+ background-color:#5D8AA8;
+ 
+}
+
+.button3
+{
+ display: inline-block;
+ height: 35px;
+ width: 35px;
+ border-radius: 90px;
+ background-color: white;
+}
+
+
+.button4
+{
+ background-color: black;
+ font-size: 20px;
+ font-weight: normal;
+ color: white;
+ width: 180px;
+ border-radius: 10px;
+ line-height:1.5;
+ margin-top: 30px;
+}
+
+
+.button5
+{
+ display: block;
+ height: 80px;
+ width: 250px;
+ border-radius: 10px;
+ background-color: black;
+ color: white;
+ font-size: 20px;
+ margin-top: 3px;
+ padding-top:13px;
+ 
+}
+
+
+.button6
+{
+ background-color:#5D8AA8;
+ color: White;
+ font-weight: bold;
+ font-size: 20px;
+ margin-right: 5px;
+ height:60px;
+ width: 120px;
+ display: inline-block;
+ transition: background-color 1s, color 1s, opacity 1s;
+ border-color: black;
+}
+
+.button6:hover
+{
+ background-color:#014098;
+ color: black;
+}
+.button6:active
+{
+ opacity: 0.3;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+{% include('header.html') %}
+<div class="gap"> </div>
+<div class="container">
+        <section>
+            <h2>Our Story</h2>
+            <p>Over the years, we have continuously invested in cutting-edge technology and partnered with leading airlines to offer our customers a vast selection of flights to destinations around the globe. Whether it's a spontaneous weekend getaway or a once-in-a-lifetime adventure, we're here to help make every journey memorable.</p>
+        </section>
+        <section>
+            <h2>Our Mission</h2>
+            <p>We are committed to ensuring that every traveler feels confident and empowered to explore the world, knowing that they have access to reliable and hassle-free flight bookings. Our mission is to be the preferred choice for travelers seeking convenience, value, and reliability in their air travel arrangements</p>
+        </section>
+        <section>
+            <h2>Our Team</h2>
+            <p>Meet our dedicated team of professionals who work tirelessly to achieve our goals.</p>
+           
+<div class="box1">
+<div class="person"> </div>
+<div class="name"> Sonali-82 </div>
+</div>
+
+<div class="box1">
+<div class="person"> </div>
+<div class="name"> Liteesh-84 </div>
+</div>
+
+<div class="box1">
+<div class="person"> </div>
+<div class="name"> Karishma-85 </div>
+</div>
+
+<div class="box1">
+<div class="person"> </div>
+<div class="name"> SriKanth-108 </div>
+</div>
+
+<div class="box1">
+<div class="person"> </div>
+<div class="name"> JayaSudha-109 </div>
+</div>
+
+
+
+
+ </section>
+    </div>
+{% include('footer.html') %}
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+     <style>
+        body
+{
+ background-color :#a7bbcd;
+ margin: 0px;
+ padding: 0px;
+
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+a
+{
+ color: white;
+}
+
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ background-color:#004098;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgba(59, 14, 162, 0.847);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+
+.right
+{
+ text-align: right;
+}
+.gap
+{
+ margin-top: 200px;
+}
+
+.welcome
+{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(41, 80, 172);
+}
+     </style>
+    </head>
+    <body>
+        {% include('header.html') %}
+        <div class="gap"> </div>
+        <center></cente><h2 class="welcome" >Welcome {{ first }}</h2>
+        <p>you can now login with your credentials</p>
+        <button class="button1" style="border-radius:8px;"><a href='/login'>Click here to login</a></button></center>
+    </body>
+</html>

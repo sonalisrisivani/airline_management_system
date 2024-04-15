@@ -1,0 +1,241 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+<style>
+
+body
+{
+ background-color :#a9bccd;
+ margin: 0px;
+ padding: 0px;
+ background-image: url('../static/images/air6.jpg');
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+a
+{
+ color: white;
+}
+
+.gap
+{
+ margin-top: 200px;
+}
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ background-color:#004098;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgb(34, 12, 107);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+
+.right
+{
+ text-align: right;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.contact-form {
+    width: 45%;
+}
+
+.contact-info {
+    width: 45%;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.contact-info h2 {
+    margin-top: 0;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+.footer
+{
+ text-align: center;
+ font-size: 20px;
+ font-weight: bolder;
+ color: white;
+ background-color:#5D8AA8;
+ 
+}
+
+.button3
+{
+ display: inline-block;
+ height: 35px;
+ width: 35px;
+ border-radius: 90px;
+ background-color: white;
+}
+
+
+.button4
+{
+ background-color: black;
+ font-size: 20px;
+ font-weight: normal;
+ color: white;
+ width: 180px;
+ border-radius: 10px;
+ line-height:1.5;
+ margin-top: 30px;
+}
+
+
+.button5
+{
+ display: block;
+ height: 80px;
+ width: 250px;
+ border-radius: 10px;
+ background-color: black;
+ color: white;
+ font-size: 20px;
+ margin-top: 3px;
+ padding-top:13px;
+ 
+}
+
+
+.button6
+{
+ background-color:#5D8AA8;
+ color: White;
+ font-weight: bold;
+ font-size: 20px;
+ margin-right: 5px;
+ height:60px;
+ width: 120px;
+ display: inline-block;
+ transition: background-color 1s, color 1s, opacity 1s;
+ border-color: black;
+}
+
+.button6:hover
+{
+ background-color:#014098;
+ color: black;
+}
+.button6:active
+{
+ opacity: 0.3;
+}
+
+</style>
+</head>
+
+<body>
+
+
+{% include('header.html') %}
+<div class="gap"> </div>
+
+
+
+
+<div class="container">
+        <form action="/dcontact" method="post" class="contact-form">
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Enter your message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Email:</strong> contact@example.com</p>
+            <p><strong>Phone:</strong> +1 123 456 7890</p>
+            <p><strong>Location:</strong> 123 Main Street, City, Country</p>
+        </div>
+    </div>
+ {% include('footer.html') %}
+</body>
+</html>

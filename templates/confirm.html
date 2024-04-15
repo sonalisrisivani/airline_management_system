@@ -1,0 +1,280 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+     <style>
+        body
+{
+ background-color :#9db2c4;
+ margin: 0px;
+ padding: 0px;
+
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+a
+{
+ color: white;
+}
+
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ border-radius: 10px;
+ background-color:#004098;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgba(59, 14, 162, 0.847);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+
+.right
+{
+ text-align: right;
+}
+.gap
+{
+ margin-top: 200px;
+}
+.footer
+{
+ text-align: center;
+ font-size: 20px;
+ font-weight: bolder;
+ color: white;
+ background-color:#5D8AA8;
+ 
+}
+
+.button3
+{
+ display: inline-block;
+ height: 35px;
+ width: 35px;
+ border-radius: 90px;
+ background-color: white;
+}
+
+
+.button4
+{
+ background-color: black;
+ font-size: 20px;
+ font-weight: normal;
+ color: white;
+ width: 180px;
+ border-radius: 10px;
+ line-height:1.5;
+ margin-top: 30px;
+}
+
+
+.button5
+{
+ display: block;
+ height: 80px;
+ width: 250px;
+ border-radius: 10px;
+ background-color: black;
+ color: white;
+ font-size: 20px;
+ margin-top: 3px;
+ padding-top:13px;
+ 
+}
+
+
+.button6
+{
+ background-color:#5D8AA8;
+ color: White;
+ font-weight: bold;
+ font-size: 20px;
+ margin-right: 5px;
+ height:60px;
+ width: 120px;
+ display: inline-block;
+ transition: background-color 1s, color 1s, opacity 1s;
+ border-color: black;
+}
+
+.button6:hover
+{
+ background-color:#014098;
+ color: black;
+}
+.button6:active
+{
+ opacity: 0.3;
+}
+.contact
+{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(41, 80, 172);
+}
+.response{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+.ticket
+{
+
+height: auto;
+width: 700px;
+background-color: white;
+color: black;
+border-radius: 30px;
+border: 3px solid rgba(31, 28, 28, 0.837);
+padding: 30px;
+font-size: 20px;
+font-family: Arial, Helvetica, sans-serif;
+
+}
+.ticket_name
+{
+  text-decoration: overline underline;
+  
+}
+.ticket_details
+{
+  color:black;
+  text-align: left;
+
+}
+.view
+{
+ width: 190px;
+ border: 1.5px solid rgb(31, 30, 30);
+ height:40px;
+ color:#17198e;
+ padding: 2px 10px;
+}
+.solo{
+    display:block;
+    margin:0 auto;
+    text-align: left;
+}
+
+
+
+     </style>
+    </head>
+    <body>
+      {% include('header.html') %}
+        <div class="gap"> </div><br><br>
+        <center>
+          <div class="ticket">
+            {% if(row) %}
+               <div class="solo"><div class="ticket_name"><h2><center> SkyLink </center></h2></div>
+                <span class="ticket_details" style="margin-right:35px;">Flight name:</span><span class="view">{{ row.flight_name }}</span><br><br>
+                <span style="margin-right:10px; " class="ticket_details">From location: </span> <span class="view">{{ row.from_place }}</span>
+                <span style="margin-left:80px" class="ticket_details">To location: </span> <span class="view">{{ row.to_place }}</span><br><br>
+                <span class="ticket_details">Departure date: </span><span class="view">{{ row.departure_date }}</span>
+                <span style="margin-left:40px;"  class="ticket_details">Arrival date: </span><span class="view">{{ row.arrival_date }}</span><br><br>
+                <span style="margin-right:0px" class="ticket_details">Departure Time: </span> <span class="view" >{{ row.departure }}</span>
+                <span style="margin-left:45px ;"  class="ticket_details">Arrival Time: </span> <span class="view">{{ row.arrival  }}</span> <br><br>
+                <span style="margin-right:5px ;"  class="ticket_details">Economy class: </span> <span class="view">{{ row.economy_p }} </span> <br><br>
+                <span style="margin-right:5px ;"  class="ticket_details">Business class: </span> <span class="view">{{ row.business_p }}</span> <br><br>
+                <span style="margin-right:48px ;"  class="ticket_details">First class: </span> <span class="view">{{ row.first_class_p }}</span> <br><br>
+               <form method="post" action="/confirmed">
+               <span style="margin-right:20px;" class="ticket_details">Choose class:</span><select class="view" name="classes" id="classes" onchange="update()" required>
+                    <option value="select">select</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First_class">First class</option>
+                </select><br>
+                <span class="ticket_details" style="margin-right:36px;">No.of seats:</span>
+                <input class="view" type="number" name="numberof" id="numberof" onchange="count()" required><br><br>
+                <input type="hidden" name="flight_name" value="{{ row.flight_name}}">
+                <input type="hidden" name="flight_id"  value="{{ row.flight_id }}">
+                <input type="hidden" name="from" value="{{ row.from_place }}">
+                <input type="hidden" name="to" value="{{ row.to_place }}">
+                <input type="hidden" name="fare" id="fare" value="" >
+                <input type="hidden" name="depdate" value="{{ row.departure_date }}">
+                <input type="hidden" name="arrdate" value="{{ row.arrival_date }}">
+                <input type="hidden" name="dep" value="{{ row.departure }}">
+                <input type="hidden" name="arr" value="{{ row.arrival }}">
+                <input type="hidden" id="economy" name="economy" value="{{ row.economy }}">
+                <input type="hidden" id="business" name="business" value="{{ row.business }}">
+                <input type="hidden" id="first_class" name="first_class" value="{{ row.first_class }}">
+                <script>
+                    function update(){
+                     var selected=document.getElementById('classes').value;
+                     var fare=23;
+                     if(selected=="Economy"){
+                         fare="{{ row.economy_p }}";
+                     }
+                     if(selected=="Business"){
+                         fare="{{ row.business_p }}";
+                     }
+                     if(selected=="First_class"){
+                         fare="{{ row.first_class_p }}";
+                     }
+                     document.getElementById('fare').value=fare;
+                    }
+                    function count(){
+                        var n=parseInt(document.getElementById('numberof').value);
+                        var cl=document.getElementById('classes').value;
+                        var e=parseInt("{{ row.economy }}");
+                        var b=parseInt("{{ row.business }}");
+                        var f=parseInt("{{ row.first_class }}");
+                        console.log(e,b,f);
+                        if(cl=="Economy" &&  e<n){
+                            alert("seats not available");
+                        }
+                        else if(cl=="Economy" && e>=n){
+                            document.getElementById('economy').value=e-n;
+                        }
+                        if(cl=="Business" && b<n){
+                            alert("seats not available");
+                        }
+                        else if(cl=="Business" && b>=n){
+                            document.getElementById('business').value=b-n;
+                        }
+                        if(cl=="First_class" && f<n ){
+                           alert("seats not available");
+                        }
+                        else if(cl=="First_class" && f>=n){
+                            document.getElementById('first_class').value=f-n;
+                        }
+                    }
+                  </script>
+            <center><button type="submit" class="button1" style="padding:2px 6px;height:35px">Confirm ticket</button></center>
+ 
+            </form>{% endif %} </div>
+        </div>
+       </center>
+        {%- include('footer.html') %}   
+    </body>
+</html>

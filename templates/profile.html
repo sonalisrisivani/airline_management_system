@@ -1,0 +1,172 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+     <style>
+        body
+{
+ background-color :#a7bbcd;
+ margin: 0px;
+ padding: 0px;
+
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+a
+{
+ color: white;
+}
+
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ background-color:#1c4f96;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgba(59, 14, 162, 0.847);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+.cancelbutton
+{
+ background-color:#1c4f96;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.cancelbutton:hover
+{
+ background-color:rgba(59, 14, 162, 0.847);
+ color: black;
+}
+.cancelbutton:active
+{
+ opacity: 0.3;
+}
+
+
+.right
+{
+ text-align: right;
+}
+.gap
+{
+ margin-top: 200px;
+}
+.box1
+{
+ background-color: white;
+ width: auto;
+ border-radius: 5px;
+ margin-left: 10%;
+ margin-right: 10%;
+ padding: 35px;
+}
+.head{
+    margin-left: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:30px;
+    color:#2b1401;
+}
+.details{
+   background-color: white;
+   width: auto;
+   border-radius: 5px;
+   margin-left: 10%;
+   margin-right: 10%;
+   padding: 35px;
+   color:#3e0327;
+   border:solid #004098;
+}
+.tickets{
+   background-color: rgba(222, 213, 218, 0.932);
+   width: auto;
+   border-radius: 5px;
+   margin-left: 10%;
+   margin-right: 10%;
+   padding: 35px;
+   color:#1b8499;
+   border:solid #43627b;
+}
+span{
+    color:#1e0a63;
+}
+</style>
+</head>
+    <body>
+        {% include('header.html') %}
+        <div class="gap"> </div>
+        <h2 class="head" style="color:rgb(87, 13, 190)">Your details:</h2>
+        {% for row in data1 %}
+            <div class="details">
+                Name : {{ row.first }} {{row.last}}<br><br>
+                Email : {{ row.email }}<br><br>
+                Mobile.no : {{ row.mobile }}<br>
+            </div>
+       {% endfor %}
+
+        <h2 class="head">Booked flight tickets:</h2>
+        {% for row in data2 %}
+            <div class="tickets">
+                <span>PNR no: </span><u>{{row.pnr }}</u><br><br>
+                <span>Flight name :</span>{{ row.flight_name }}<br><br>
+                <span>From location: </span>{{ row.from_place }} <span style="margin-left:66px">To location:</span>{{ row.to_place }}<br><br>
+                <span>Departure date: </span>{{row.departure_date}}      <span style="margin-left:30px">Arrival date: </span> {{ row.arrival_date }}<br><br>
+                <span>Departure time: </span>{{ row.departure }} <span style="margin-left:40px">Arrival time: </span> {{ row.arrival }}<br><br>
+                <span>Fare: </span>{{ row.fare }}                 <span style="margin-left:162px;">Class:</span> {{ row.classes }}<br><br>
+                <span>No of seats: </span>{{ row.seats_booked }}<br>
+                {% if((row.departure_date)>= (today) ) %}
+                <form method="post" id="cancelform" action="/cancel">
+                <input type="hidden" name="pnr" value="{{row.pnr}}">
+                <input type="hidden" name="flight_id" value="{{row.flight_id}}">
+                <button  type="submit" style="margin-left:200px;height:40px;border-radius:6px;font-size:20px;" class="cancelbutton" onclick="verify()">Cancel</button>
+                {%  else  %}
+                    <span style="margin-left:200px;height:40px;border-radius:6px;font-size:20px;background-color: #7760c7;">Ticket expired</span>
+                {% endif %}
+        
+                <script>
+                    function verify(){
+                        confirm("Are you sure you want to cancel?");
+                    
+                }
+                </script>
+            </form>
+            </div><br>
+       {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,162 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+<style>
+
+
+body
+{
+ background-color :#a0b5c7;
+ margin: 0px;
+ padding: 0px;
+
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+a
+{
+ color: white; 
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ background-color:#004098;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgb(19, 7, 122);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+
+.right
+{
+ text-align: right;
+}
+
+.text
+{
+ color: black;
+ font-size: 15px;
+}
+
+
+</style>
+</head>
+
+<body>
+{% include('header.html') %}
+<div class="container">
+<form class="login-form" method="post" action="/dregister">
+<h2>Register </h2>
+
+<div class="input-group">
+<label>Enter your First Name</label>
+<input type="text" placeholder="Enter your First name" name="username" id="username">
+</div>
+
+<div class="input-group">
+<label>Enter your Last Name</label>
+<input type="text" placeholder="Enter your Last name" name="last" id="last" required>
+</div>
+
+<div class="input-group">
+<label>Enter your E-Mail</label>
+<input type="text" placeholder="Enter your Mail" name="email" id="email" required>
+</div>
+
+
+<div class="input-group">
+<label for="mobile">Enter your Mobile Number:</label>
+<input type="tel" id="mobile" name="mobile"  placeholder="Enter your mobile number" required>
+</div>
+<div class="input-group">
+<label for="password">Enter your Password:</label>
+<input type="password" id="password" name="password" placeholder="Enter your password" required>
+</div>
+<button type="submit">Submit</button>
+<br><br>
+<div class="text">Already Registered? Click <a href="/login" class="text"> <u>here </u></a></div> 
+
+</form>
+</div>
+{% include('footer.html') %}
+</body>
+</html>

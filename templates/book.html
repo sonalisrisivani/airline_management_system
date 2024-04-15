@@ -1,0 +1,218 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css')}}">
+     <style>
+        body
+{
+ background-color :#F0F8FF;
+ margin: 0px;
+ padding: 0px;
+
+ font-family: Times New Roman;
+ font-size:20px;
+ font-weight: bolder;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+a
+{
+ color: white;
+}
+
+
+.booking_header
+{
+ position: fixed;
+ top: 0;
+ padding-top:30px;
+ width: 100%;
+ background-color: #004098;
+ height: 60px;
+}
+
+.button1
+{
+ background-color:#004098;
+ color: White;
+ font-weight: bold;
+ font-size: 30px;
+ margin-right: 10px;
+ border: none;
+ display: inline-block;
+ height:60px;
+ transition: background-color 1s, color 1s, opacity 1s;
+}
+.button1:hover
+{
+ background-color:rgba(59, 14, 162, 0.847);
+ color: black;
+}
+.button1:active
+{
+ opacity: 0.3;
+}
+
+.right
+{
+ text-align: right;
+}
+.gap
+{
+ margin-top: 200px;
+}
+.footer
+{
+ text-align: center;
+ font-size: 20px;
+ font-weight: bolder;
+ color: white;
+ background-color:#5D8AA8;
+ 
+}
+
+.button3
+{
+ display: inline-block;
+ height: 35px;
+ width: 35px;
+ border-radius: 90px;
+ background-color: white;
+}
+
+
+.button4
+{
+ background-color: black;
+ font-size: 20px;
+ font-weight: normal;
+ color: white;
+ width: 180px;
+ border-radius: 10px;
+ line-height:1.5;
+ margin-top: 30px;
+}
+
+
+.button5
+{
+ display: block;
+ height: 80px;
+ width: 250px;
+ border-radius: 10px;
+ background-color: black;
+ color: white;
+ font-size: 20px;
+ margin-top: 3px;
+ padding-top:13px;
+ 
+}
+
+
+.button6
+{
+ background-color:#5D8AA8;
+ color: White;
+ font-weight: bold;
+ font-size: 20px;
+ margin-right: 5px;
+ height:60px;
+ width: 120px;
+ display: inline-block;
+ transition: background-color 1s, color 1s, opacity 1s;
+ border-color: black;
+}
+
+.button6:hover
+{
+ background-color:#014098;
+ color: black;
+}
+.button6:active
+{
+ opacity: 0.3;
+}
+.welcome
+{
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(4, 33, 65);
+}
+
+.flight{
+    display: inline-block;
+}
+.textso{
+    font-size:30px;
+    font-family:'Times New Roman', Times, serif;
+    color: white;
+}
+.flights{
+   background-color: #004098;
+   width: auto;
+   border-radius: 8px;
+   margin-left: 10%;
+   margin-right: 10%;
+   padding: 35px;
+   color:#e9eaee;
+   border:6px solid #033172f7;
+}
+.dis{
+    color:#14023e;
+    background-color: #e3e5ee;
+    border-radius: 4px;
+    padding:2px 10px;
+    margin-left: 8px;
+}
+     </style>
+    </head>
+    <body>
+        {% include('header.html') %}
+        <div class="gap"> </div>
+            {%if (ses=="") %}
+                   <center><button class="button1" style="border-radius:10px;font-size:20px;padding:2px 4px 2px 4px"><a href="/login">Login to book</a></button></center>
+                    
+           {% endif %}
+            {%  if(res) %}
+               <center><h2>Available flights </h2><br></center>
+               {% for row in res %}
+                <div class="flights">
+                    Flight name:<span class="dis">{{ row.flight_name }}</span><br><br>
+                    Departure date:<span  class="dis" style="margin-right:60px;">{{ row.departure_date }}</span>         
+                    Arrival date:<span class="dis">{{ row.arrival_date }}</span><br><br>
+                    Departure time: <span class="dis" style="margin-right:60px;">{{ row.departure }}</span>
+                    Arrival time: <span class="dis">{{ row.arrival }}</span><br><br>
+                    {% if(row.economy>0 or row.business>0 or row.first_class>0) %}
+                       Economy class seats: <span class="dis">{{ row.economy }}</span><br><br>
+                        Business class seats: <span class="dis">{{ row.business }}</span><br><br>
+                        First class seats: <span class="dis">{{ row.first_class }}</span>
+                   {% 
+                   else %}
+                       we are out of seats!<br>
+                   {% endif %}
+                <br></div><br>
+                {% if(ses) %}
+                <form method="post" action="/confirm">
+                  <input type="hidden" name="flight_name" value="{{ row.flight_name }}">
+                  <input type="hidden" name="from" value="{{ row.from_place }}" >
+                  <input type="hidden" name="to" value="{{ row.to_place }}">
+                  <input type="hidden" name="depdate" value="{{ row.departure_date }}">
+                  <input type="hidden" name="arrdate" value="{{ row.arrival_date }}">
+                  <input type="hidden" name="flight_id" value="{{ row.flight_id }}">
+                  <center><input class="button1" type="submit" value="Book now" style="border-radius:10px;font-size:20px;padding:2px 4px 2px 4px; height:40px"></center>
+                </form>
+                {% endif %}
+            {% endfor %}
+           {% else  %}
+            <center>
+              <p class ="textso">Sorry for the inconvenience</p>
+              <p class="textso">There are no available flights right now from <u><%= fromp %></u> to <u><%= top %></u></p>
+           {% endif %}
+        </center>
+        {% include('footer.html') %} 
+    </body>
+</html>
