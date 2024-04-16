@@ -1,0 +1,5 @@
+ 
+[build]
+  base = "airline_management_system" # Specify the base directory
+  publish = "airline_management_system/" # Specify the publish directory
+  command = "python app.py" # Specify the build command
