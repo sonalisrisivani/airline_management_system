@@ -2,4 +2,4 @@
 [build]
   base = "/" # Specify the base directory
   publish = "airline_management_system/" # Specify the publish directory
-   command = "gunicorn -b :$PORT app:app" # Specify the build command using Gunicorn
+  command = "waitress-serve --port $PORT app:app" # Specify the build command using waitress  
