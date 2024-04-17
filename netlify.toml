@@ -2,4 +2,4 @@
 [build]
   base = "/" # Specify the base directory
   publish = "airline_management_system/" # Specify the publish directory
-  command = "python app.py" # Specify the build command
+   command = "gunicorn -b :$PORT app:app" # Specify the build command using Gunicorn
